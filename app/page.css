@@ -1,0 +1,29 @@
+.root {
+    background-color: #12184C;
+    background-image: url('/bg1.png');
+    background-size: 50%;
+    background-repeat: no-repeat;
+    position: fixed;
+    width: 100vw;
+    height: 100vh;
+}
+
+.logo {
+    position: fixed;
+    right: 24px;
+    top: 24px;
+}
+
+.box {
+    width: 768px;
+    background-color: #fff;
+    height: 200px;
+    border-radius: 16px;
+}
+
+.gradient-text {
+    background: linear-gradient(90deg, #FFE6C1 6.79%, #FFDC96 99.87%);
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+  }
