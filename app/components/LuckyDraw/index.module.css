@@ -1,41 +1,55 @@
+
 .container {
-    perspective: 10000px;
-    width: 300px;
-    height: 100px;
-    padding-top: 60px;
+    /* width: 300px; */
+    /* height: 500px; */
+    /* padding-top: 60px; */
     position: relative;
-    --radius: 2000px;  
-    --radius2: -2000px;  
-    --total-items: 300; 
+    --item-height: 100px;
+    --total-items: 120;
+    --radius: calc(var(--item-height) * var(--total-items) / (2 * 3.14159));  
+    --height: calc(var(--item-height));
+    height: calc(var(--height) * 1);
+    width: 100%;
     overflow: hidden;
+    /* outline: #888 solid 10px; */
 }
 
 .ring {
     position: absolute;
     transform-style: preserve-3d;
     font-size: 20px;
+    /* outline: 10px blue solid; */
+    height: var(--height);
+    width: 100%;
 }
 
 .box {
-    transform-style: preserve-3d;
+    perspective: calc(var(--radius ) * 2);
     z-index: 1;
+    /* outline: 5px red solid; */
+    height: var(--height);
+    width: 100%;
 }
 
 .running .ring {
     transform: translateZ(0);
-    animation: rotate 15s cubic-bezier(1, 0.61, 0.36, 1);
+    animation: rotate 15s ease-out;
 }
 
 .item {
     position: absolute;
     left: 0;
+    right: 0;
     top: 0;
-    width: 300px;
-    height: 30px;
+    width: 100%;
+    height: var(--item-height);
+    line-height: var(--item-height);
     background-color: #fff;
     text-align: center;
     backface-visibility: hidden;
     z-index: 1;
+    font-size: calc(var(--item-height) * 0.3);
+    /* outline: 1px solid #000; */
 }
 
 @keyframes rotate {
@@ -43,11 +57,11 @@
         transform: rotateX(0deg);
     }
     100% {
-        transform: rotateX(-360deg);
+        transform: rotateX(-720deg);
     }
 }
 
-.xxx::before {
+/* .xxx::before {
     height: 150px;
     width: 100%;
     content: "";
@@ -86,4 +100,4 @@
     z-index: 999;
     background: #fff;
     transform: translateZ(2000px);
-  }
+  } */
