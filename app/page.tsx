@@ -179,19 +179,20 @@ export default function Home() {
             感恩大抽奖
           </h1>
           <div className="box">
-            <button
-              onClick={() => {
-                handleClick();
-              }}
-            >
-              start
-            </button>
             <LuckyDraw
               lotteryList={list.map((i) => i.name)}
               winner={"韩立"}
               ref={childRef}
             />
           </div>
+
+          <button
+            onClick={() => {
+              handleClick();
+            }}
+          >
+            start
+          </button>
         </main>
         <footer className="row-start-3 flex gap-[24px] flex-wrap items-center justify-center">
           xxx
