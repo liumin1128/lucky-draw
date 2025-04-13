@@ -4,7 +4,7 @@
     /* height: 500px; */
     /* padding-top: 60px; */
     position: relative;
-    --item-height: 120px;
+    --item-height: 140px;
     --total-items: 120;
     --radius: calc(var(--item-height) * var(--total-items) / (2 * 3.14159));  
     --height: calc(var(--item-height));
@@ -21,9 +21,11 @@
     /* outline: 10px blue solid; */
     height: var(--height);
     width: 100%;
+    transform: translateZ(calc(var(--radius) * -1));
 }
 
 .box {
+    transform-style: preserve-3d;
     perspective: calc(var(--radius ) * 2);
     z-index: 1;
     /* outline: 5px red solid; */
@@ -32,7 +34,7 @@
 }
 
 .running .ring {
-    transform: translateZ(0);
+    /* transform: translateZ(0); */
     animation: rotate 15s ease-in-out;
 }
 
@@ -48,16 +50,17 @@
     text-align: center;
     backface-visibility: hidden;
     z-index: 1;
-    font-size: calc(var(--item-height) * 0.3);
+    font-size: calc(var(--item-height) * 0.5);
+    font-weight: bolder;
     /* outline: 1px solid #000; */
 }
 
 @keyframes rotate {
     0% {
-        transform: rotateX(0deg);
+        transform: translateZ(calc(var(--radius) * -1)) rotateX(0deg);
     }
     100% {
-        transform: rotateX(-360deg);
+        transform: translateZ(calc(var(--radius) * -1)) rotateX(-360deg);
     }
 }
 
