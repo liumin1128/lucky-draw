@@ -5,6 +5,7 @@ import Image from "next/image";
 import LuckyDraw, { LuckyDrawRef } from "./components/LuckyDraw";
 import Settings from "./components/Settings";
 import "./page.css";
+import { set } from "react-hook-form";
 
 function hideSensitiveInfo(str: string) {
   // 处理姓名：匹配中文姓名（2-4个汉字），保留第一个字，其余替换为*
@@ -49,18 +50,42 @@ export default function Home() {
   const [selectCount, setSelectCount] = useState<number>(3);
   const [playerList, setPlayerList] = useState<string[]>([]);
   const [currentIndex, setCurrentIndex] = useState<number>(-1);
+  const [defaultWinnerList, setDefaultWinnerList] = useState<string[]>([]);
   const [winnerList, setWinnerList] = useState<string[]>([]);
   const [showSetting, setShowSetting] = useState<boolean>(false);
 
   const handleClick = () => {
+    console.log("xxxxxxxx", defaultWinnerList);
+
     if (!playerList.length) {
       alert("请先设置抽奖名单");
       return;
     }
 
     if (currentIndex === -1) {
-      // 第一次点击,初始化抽奖
+      if (defaultWinnerList.length > 0) {
+        console.log("xxxxxxxx", defaultWinnerList);
 
+        // 如果有默认中奖名单, 先将中奖名单设置为默认中奖名单
+
+        const selectedElements = defaultWinnerList;
+
+        // 筛选出剩下的元素
+        const remainingElements = playerList.filter(
+          (i) => defaultWinnerList.findIndex((j) => i === j) === -1
+        );
+
+        setSelectedElements(selectedElements);
+        setRemainingElements(remainingElements);
+        setCurrentIndex(0);
+        childRef.current?.run(selectedElements[0], () => {
+          setWinnerList([...winnerList, selectedElements[0]]);
+        });
+
+        return;
+      }
+
+      // 第一次点击,初始化抽奖
       const selectedIndices = getMultiRandomInt(
         0,
         playerList.length - 1,
@@ -170,6 +195,13 @@ export default function Home() {
             onSubmit={(values) => {
               console.log("onSubmit", values);
               setPlayerList(values.player.split(","));
+              if (values.winner) {
+                const list = values.winner.split(",");
+                setSelectCount(list.length);
+                setDefaultWinnerList(list);
+              } else {
+                setSelectCount(values.selectCount);
+              }
             }}
           />
         </div>
