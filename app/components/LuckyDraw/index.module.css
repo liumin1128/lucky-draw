@@ -8,6 +8,7 @@
     --total-items: 120;
     --radius: calc(var(--item-height) * var(--total-items) / (2 * 3.14159));  
     --height: calc(var(--item-height));
+    --animation-time: 15s;
     height: calc(var(--height) * 1);
     width: 100%;
     overflow: hidden;
@@ -35,7 +36,7 @@
 
 .running .ring {
     /* transform: translateZ(0); */
-    animation: rotate 15s ease-in-out;
+    animation: rotate var(--animation-time) ease-in-out;
 }
 
 .item {

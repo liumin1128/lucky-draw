@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useImperativeHandle, Ref } from "react";
+import { useState, useImperativeHandle, Ref, useEffect } from "react";
 import styles from "./index.module.css";
 
 function hideSensitiveInfo(str: string) {
@@ -27,7 +27,7 @@ function hideSensitiveInfo(str: string) {
 
 // 定义子组件暴露的 API 类型
 export type LuckyDrawRef = {
-  run: (winner: string) => void;
+  run: (winner: string, cb: () => void) => void;
   reStart: () => void;
 };
 
@@ -48,13 +48,19 @@ export default function LuckyDraw({
   ref,
   lotteryList,
   placeholder = "开始",
-  time = 15500,
+  time = 15000,
 }: LuckyDrawProps) {
   const [isRun, setIsRun] = useState(false);
   const [change, setChange] = useState<string[]>([placeholder]);
 
   useImperativeHandle(ref, () => ({
-    run: (winner: string) => {
+    run: (winner: string, cb: () => void) => {
+      console.log("time", time, styles.container);
+      const container = document.querySelector(
+        "." + styles.container
+      ) as HTMLElement;
+      container.style.setProperty("--animation-time", time / 1000 + "s");
+
       setIsRun(true);
       // setChange([placeholder]);
       setTimeout(() => {
@@ -62,6 +68,7 @@ export default function LuckyDraw({
       }, time * 0.5);
       setTimeout(() => {
         setIsRun(false);
+        cb();
       }, time);
     },
     reStart: () => {
