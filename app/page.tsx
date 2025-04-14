@@ -257,9 +257,11 @@ export default function Home() {
             点击抽奖
           </button>
 
-          <div className="w-full text-[20px] text-center font-bold text-white">{`中奖名单`}</div>
+          <div className="w-full text-[20px] text-center font-bold text-white h-3">
+            {winnerList.length > 0 ? `中奖名单` : ""}
+          </div>
 
-          <div className="flex justify-center items-center space-x-4  w-full">
+          <div className="flex justify-center items-center space-x-4 w-full h-8">
             {winnerList.map((i) => {
               return (
                 <div
@@ -272,9 +274,9 @@ export default function Home() {
             })}
           </div>
         </main>
-        <footer className="row-start-3 flex gap-[24px] flex-wrap items-center justify-center">
+        {/* <footer className="row-start-3 flex gap-[24px] flex-wrap items-center justify-center">
           xxx
-        </footer>
+        </footer> */}
       </div>
     </div>
   );
