@@ -27,7 +27,8 @@ function hideSensitiveInfo(str: string) {
 
 // 定义子组件暴露的 API 类型
 export type LuckyDrawRef = {
-  run: () => void;
+  run: (winner: string) => void;
+  reStart: () => void;
 };
 
 // interface Lottery {
@@ -37,30 +38,34 @@ export type LuckyDrawRef = {
 
 interface LuckyDrawProps {
   lotteryList: string[];
-  winner: string;
+  // winner: string;
   ref: Ref<LuckyDrawRef>;
   placeholder?: string;
+  time?: number;
 }
 
 export default function LuckyDraw({
   ref,
   lotteryList,
-  winner,
   placeholder = "开始",
+  time = 15500,
 }: LuckyDrawProps) {
   const [isRun, setIsRun] = useState(false);
   const [change, setChange] = useState<string[]>([placeholder]);
 
   useImperativeHandle(ref, () => ({
-    run: () => {
+    run: (winner: string) => {
       setIsRun(true);
-      setChange([placeholder]);
+      // setChange([placeholder]);
       setTimeout(() => {
         setChange([winner]);
-      }, 2000);
+      }, time * 0.5);
       setTimeout(() => {
         setIsRun(false);
-      }, 15500);
+      }, time);
+    },
+    reStart: () => {
+      setChange([placeholder]);
     },
   }));
 
