@@ -47,7 +47,7 @@
     width: 100%;
     height: var(--item-height);
     line-height: var(--item-height);
-    background-color: #fff;
+    /* background-color: #fff; */
     text-align: center;
     backface-visibility: hidden;
     z-index: 1;

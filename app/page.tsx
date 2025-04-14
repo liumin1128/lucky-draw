@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useRef, useState } from "react";
+import React, { useRef, useState, useEffect } from "react";
 import Image from "next/image";
 import LuckyDraw, { LuckyDrawRef } from "./components/LuckyDraw";
 import Settings from "./components/Settings";
@@ -129,6 +129,21 @@ export default function Home() {
     });
   };
 
+  const useEnterKey = (callback: () => void) => {
+    useEffect(() => {
+      const handleKeyDown = (event: any) => {
+        if (event.key === "Enter") callback();
+      };
+      window.addEventListener("keydown", handleKeyDown);
+      return () => window.removeEventListener("keydown", handleKeyDown);
+    }, [callback]);
+  };
+
+  useEnterKey(() => {
+    console.log("自定义 Hook 监听到回车");
+    handleClick();
+  });
+
   console.log("playerList", playerList);
   console.log("remainingElements", remainingElements);
   console.log("selectedElements", selectedElements);
@@ -154,7 +169,7 @@ export default function Home() {
           <div className="w-full flex justify-center items-center">
             <div className="box w-full">
               <LuckyDraw
-                time={3000}
+                time={15000}
                 lotteryList={remainingElements}
                 ref={childRef}
               />
