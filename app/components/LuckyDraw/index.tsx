@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useImperativeHandle, Ref, useEffect } from "react";
+import { useState, useImperativeHandle, Ref } from "react";
 import styles from "./index.module.css";
 
 function hideSensitiveInfo(str: string) {

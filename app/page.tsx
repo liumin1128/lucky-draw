@@ -5,7 +5,6 @@ import Image from "next/image";
 import LuckyDraw, { LuckyDrawRef } from "./components/LuckyDraw";
 import Settings from "./components/Settings";
 import "./page.css";
-import { set } from "react-hook-form";
 
 function hideSensitiveInfo(str: string) {
   // 处理姓名：匹配中文姓名（2-4个汉字），保留第一个字，其余替换为*
@@ -52,7 +51,6 @@ export default function Home() {
   const [currentIndex, setCurrentIndex] = useState<number>(-1);
   const [defaultWinnerList, setDefaultWinnerList] = useState<string[]>([]);
   const [winnerList, setWinnerList] = useState<string[]>([]);
-  const [showSetting, setShowSetting] = useState<boolean>(false);
   const [showButton, setShowButton] = useState<boolean>(true);
   const [title, setTitle] = useState<string>("感恩大抽奖");
 
@@ -137,7 +135,7 @@ export default function Home() {
 
   const useEnterKey = (callback: () => void) => {
     useEffect(() => {
-      const handleKeyDown = (event: any) => {
+      const handleKeyDown = (event: KeyboardEvent) => {
         if (event.key === "Enter") callback();
       };
       window.addEventListener("keydown", handleKeyDown);
@@ -163,9 +161,6 @@ export default function Home() {
         width={180}
         height={149}
         priority
-        onClick={() => {
-          setShowSetting(true);
-        }}
       />
       <div className="grid grid-rows-[20px_1fr_20px] items-center justify-items-center min-h-screen p-8 pb-20 gap-16 sm:p-20 font-[family-name:var(--font-geist-sans)]">
         <main className="gap-[32px] row-start-2 sm:items-start flex justify-center flex-wrap">
