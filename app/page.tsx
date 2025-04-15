@@ -5,7 +5,6 @@ import React, { useRef, useState, useEffect } from "react";
 import LuckyDraw, { LuckyDrawRef } from "./components/LuckyDraw";
 import Settings from "./components/Settings";
 import "./page.css";
-import { set } from "react-hook-form";
 
 function hideSensitiveInfo(str: string) {
   // 处理姓名：匹配中文姓名（2-4个汉字），保留第一个字，其余替换为*
