@@ -36,6 +36,7 @@ const bingo = () => {
 
   const { cancel } = emojiBlasts({
     emojiCount: () => Math.random() * 5 + 2,
+    emojis: ["✨"],
     interval: 60,
   });
 
