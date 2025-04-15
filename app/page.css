@@ -1,7 +1,7 @@
 .root {
   background-color: #12184c;
   background-image: url("/bg1.png");
-  background-size: 800px;
+  background-size: 600px;
   background-repeat: no-repeat;
   position: fixed;
   width: 100vw;
