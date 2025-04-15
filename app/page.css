@@ -1,8 +1,9 @@
 .root {
   background-color: #12184c;
-  background-image: url("/bg1.png");
-  background-size: 600px;
+  background-image: url("/bg3.png");
+  background-size: 100% auto;
   background-repeat: no-repeat;
+  background-position: bottom;
   position: fixed;
   width: 100vw;
   height: 100vh;
@@ -16,8 +17,8 @@
 
 .setting {
   position: fixed;
-  right: 24px;
-  bottom:  24px;
+  left: 24px;
+  top:  24px;
 }
 
 .box {
@@ -26,6 +27,10 @@
   height: 168px;
   border-radius: 16px;
   padding: 8px 24px;
+
+  display: flex;
+  
+
 
 /* border: 6px solid #FFDC97;
 background: linear-gradient(178deg, #FFF 10.34%, #F6E2C5 87.69%);

@@ -155,27 +155,25 @@ export default function Home() {
 
   return (
     <div className="root">
-      <Image
+      {/* <Image
         className="logo"
         src="/logo.png"
         alt="Next.js logo"
         width={180}
         height={149}
         priority
-      />
-      <div className="grid grid-rows-[20px_1fr_20px] items-center justify-items-center min-h-screen p-8 pb-20 gap-16 sm:p-20 font-[family-name:var(--font-geist-sans)]">
-        <main className="gap-[32px] row-start-2 sm:items-start flex justify-center flex-wrap">
+      /> */}
+      <div className="">
+        <main className="gap-[32px] flex justify-center flex-wrap pt-24">
           <h1 className="w-full text-center text-[72px] font-bold gradient-text">
             {title}
           </h1>
           <div className="w-full flex justify-center items-center">
-            <div className="box w-full">
-              <LuckyDraw
-                time={showTime}
-                lotteryList={remainingElements}
-                ref={childRef}
-              />
-            </div>
+            <LuckyDraw
+              time={showTime}
+              lotteryList={remainingElements}
+              ref={childRef}
+            />
           </div>
 
           {showButton && (
@@ -183,13 +181,13 @@ export default function Home() {
               onClick={() => {
                 handleClick();
               }}
-              className="start-button mt-4"
+              className="start-button mt-8"
             >
               点击抽奖
             </button>
           )}
 
-          <div className="mt-12 w-full text-[20px] text-center font-bold text-white h-3">
+          <div className="mt-4 w-full text-[20px] text-center font-bold text-white h-3">
             {winnerList.length > 0 ? `中奖名单` : ""}
           </div>
 
