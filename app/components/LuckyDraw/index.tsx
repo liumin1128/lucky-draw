@@ -31,14 +31,8 @@ export type LuckyDrawRef = {
   reStart: () => void;
 };
 
-// interface Lottery {
-//   name: string;
-//   tel: string;
-// }
-
 interface LuckyDrawProps {
   lotteryList: string[];
-  // winner: string;
   ref: Ref<LuckyDrawRef>;
   placeholder?: string;
   time?: number;
@@ -76,29 +70,42 @@ export default function LuckyDraw({
     },
   }));
 
-  const sssss = [
+  const payerList = [
     ...new Array(120).fill("x").map((i, index) => {
       return lotteryList[index % lotteryList.length];
     }),
     ...change,
   ].map((i) => hideSensitiveInfo(i));
 
-  // const aaa = getMultiRandomInt(0, sssss.length - 1, 4);
-
-  // console.log("aaa", aaa);
-
   return (
     <div className={`${styles.container} ${isRun ? styles.running : ""}`}>
+      <div className={styles.lights}>
+        {new Array(624).fill("x").map((i, idx) => {
+          return (
+            <div
+              key={idx}
+              className={
+                styles.light +
+                " " +
+                styles["light" + (idx % 3)] +
+                " " +
+                styles["light_idx_" + idx]
+              }
+            ></div>
+          );
+        })}
+      </div>
+
       <div className={styles.box}>
         <div className={styles.ring}>
-          {sssss.map((i, index) => {
+          {payerList.map((i, index) => {
             return (
               <div
                 key={index}
                 className={styles.item}
                 style={{
                   transform: `rotateX(${
-                    (360 / sssss.length) * (index + 1)
+                    (360 / payerList.length) * (index + 1)
                   }deg) translateZ(var(--radius))`,
                 }}
               >
