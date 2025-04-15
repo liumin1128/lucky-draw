@@ -53,7 +53,16 @@ export default function Home() {
   const [defaultWinnerList, setDefaultWinnerList] = useState<string[]>([]);
   const [winnerList, setWinnerList] = useState<string[]>([]);
   const [showSetting, setShowSetting] = useState<boolean>(false);
+  const [showButton, setShowButton] = useState<boolean>(true);
   const [title, setTitle] = useState<string>("感恩大抽奖");
+
+  const reset = () => {
+    setSelectedElements([]);
+    setRemainingElements([]);
+    setCurrentIndex(-1);
+    setWinnerList([]);
+    childRef.current?.reStart();
+  };
 
   const handleClick = () => {
     console.log("xxxxxxxx", defaultWinnerList);
@@ -115,11 +124,7 @@ export default function Home() {
     if (currentIndex >= selectCount - 1) {
       alert("抽奖结束");
       // 结束抽奖
-      setSelectedElements([]);
-      setRemainingElements([]);
-      setCurrentIndex(-1);
-      setWinnerList([]);
-      childRef.current?.reStart();
+      reset();
       return;
     }
 
@@ -177,16 +182,18 @@ export default function Home() {
             </div>
           </div>
 
-          <button
-            onClick={() => {
-              handleClick();
-            }}
-            className="start-button mb-16"
-          >
-            点击抽奖
-          </button>
+          {showButton && (
+            <button
+              onClick={() => {
+                handleClick();
+              }}
+              className="start-button"
+            >
+              点击抽奖
+            </button>
+          )}
 
-          <div className="w-full text-[20px] text-center font-bold text-white h-3">
+          <div className="mt-8 w-full text-[20px] text-center font-bold text-white h-3">
             {winnerList.length > 0 ? `中奖名单` : ""}
           </div>
 
@@ -221,6 +228,9 @@ export default function Home() {
               if (values.title) {
                 setTitle(values.title);
               }
+              setShowButton(values.showButton);
+
+              reset();
             }}
           />
         </div>
