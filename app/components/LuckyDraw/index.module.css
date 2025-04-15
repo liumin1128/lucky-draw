@@ -94,16 +94,57 @@
   margin: 4px;
   border-radius: 4px;
   font-size: 4px;
+  /* animation: hardBlink 6s infinite steps(1); */
+
+  animation-duration: 3s;
+  animation-iteration-count: infinite;
+  animation-timing-function: steps(1);
+}
+
+.running .light{
+  animation-duration: 0.3s;
+}
+
+.lights .light0 {
+  /* background-color: #10174a; */
+  animation-name: blinkRedGreenBlue;
 }
 
 .lights .light1 {
-  background-color: #ff0000;
+  /* background-color: #fff; */
+  animation-name: blinkGreenBlueRed;
 }
 
 .lights .light2 {
-  background-color: #00ff00;
+  /* background-color: #f18a00; */
+  animation-name: blinkBlueRedGreen;
 }
 
-.lights .light_idx_0,.lights .light_idx_51,.lights .light_idx_572,.lights .light_idx_623 {
-    opacity: 0;
+.lights .light_idx_0,
+.lights .light_idx_51,
+.lights .light_idx_572,
+.lights .light_idx_623 {
+  opacity: 0;
+}
+
+
+/* 第1组动画：红→绿→蓝（每1秒切换一次） */
+@keyframes blinkRedGreenBlue {
+    0%, 33.333% { background-color: #10174a; }
+    33.333%, 66.666% { background-color: #fff; }
+    66.666%, 100% { background-color: #f18a00; }
+}
+
+/* 第2组动画：绿→蓝→红（每1秒切换一次） */
+@keyframes blinkGreenBlueRed {
+    0%, 33.333% { background-color: #fff; }
+    33.333%, 66.666% { background-color: #f18a00; }
+    66.666%, 100% { background-color: #10174a; }
+}
+
+/* 第3组动画：蓝→红→绿（每1秒切换一次） */
+@keyframes blinkBlueRedGreen {
+    0%, 33.333% { background-color: #f18a00; }
+    33.333%, 66.666% { background-color: #10174a; }
+    66.666%, 100% { background-color: #fff; }
 }
