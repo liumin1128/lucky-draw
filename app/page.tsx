@@ -52,6 +52,7 @@ export default function Home() {
   const [defaultWinnerList, setDefaultWinnerList] = useState<string[]>([]);
   const [winnerList, setWinnerList] = useState<string[]>([]);
   const [showButton, setShowButton] = useState<boolean>(true);
+  const [showTime, setShowTime] = useState<number>(5000);
   const [title, setTitle] = useState<string>("感恩大抽奖");
 
   const reset = () => {
@@ -170,7 +171,7 @@ export default function Home() {
           <div className="w-full flex justify-center items-center">
             <div className="box w-full">
               <LuckyDraw
-                time={15000}
+                time={showTime}
                 lotteryList={remainingElements}
                 ref={childRef}
               />
@@ -224,7 +225,9 @@ export default function Home() {
                 setTitle(values.title);
               }
               setShowButton(values.showButton);
-
+              if (showTime) {
+                setShowTime(values.showTime);
+              }
               reset();
             }}
           />

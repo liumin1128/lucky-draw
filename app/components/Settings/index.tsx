@@ -30,6 +30,7 @@ export interface FormValues {
   title: string;
   showButton: boolean;
   selectCount: number;
+  showTime: number;
 }
 
 export default function Settingss({
@@ -48,6 +49,7 @@ export default function Settingss({
       //   winner:
       //     "赵敏 13800138007,周杰 13800138008,吴倩 13800138009,徐强 13800138010",
       selectCount: 1,
+      showTime: 5000,
     },
   });
 
@@ -119,6 +121,21 @@ export default function Settingss({
                     <Input placeholder="1" {...field} />
                   </FormControl>
                   <FormDescription>抽取的中奖人数，默认1人</FormDescription>
+                  <FormMessage />
+                </FormItem>
+              )}
+            />
+
+            <FormField
+              control={form.control}
+              name="showTime"
+              render={({ field }) => (
+                <FormItem>
+                  <FormLabel>Show Time</FormLabel>
+                  <FormControl>
+                    <Input placeholder="5000" {...field} />
+                  </FormControl>
+                  <FormDescription>滚动时间</FormDescription>
                   <FormMessage />
                 </FormItem>
               )}
