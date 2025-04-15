@@ -160,7 +160,7 @@ export default function Home() {
         className="logo"
         src="/logo.png"
         alt="Next.js logo"
-        width={343}
+        width={180}
         height={149}
         priority
         onClick={() => {
