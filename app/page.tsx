@@ -187,13 +187,13 @@ export default function Home() {
               onClick={() => {
                 handleClick();
               }}
-              className="start-button"
+              className="start-button mt-4"
             >
               点击抽奖
             </button>
           )}
 
-          <div className="mt-8 w-full text-[20px] text-center font-bold text-white h-3">
+          <div className="mt-12 w-full text-[20px] text-center font-bold text-white h-3">
             {winnerList.length > 0 ? `中奖名单` : ""}
           </div>
 
