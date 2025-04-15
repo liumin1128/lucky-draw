@@ -96,7 +96,7 @@
   font-size: 4px;
   /* animation: hardBlink 6s infinite steps(1); */
 
-  animation-duration: 3s;
+  animation-duration: 9s;
   animation-iteration-count: infinite;
   animation-timing-function: steps(1);
 }

@@ -116,11 +116,7 @@ export default function Settingss({
                 <FormItem>
                   <FormLabel>Select Count</FormLabel>
                   <FormControl>
-                    <Textarea
-                      placeholder="1"
-                      className="max-h-[200px]"
-                      {...field}
-                    />
+                    <Input placeholder="1" {...field} />
                   </FormControl>
                   <FormDescription>抽取的中奖人数，默认1人</FormDescription>
                   <FormMessage />
