@@ -1,7 +1,7 @@
 "use client";
 
 import React, { useRef, useState, useEffect } from "react";
-import Image from "next/image";
+// import Image from "next/image";
 import LuckyDraw, { LuckyDrawRef } from "./components/LuckyDraw";
 import Settings from "./components/Settings";
 import "./page.css";
