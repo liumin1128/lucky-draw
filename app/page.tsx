@@ -168,6 +168,26 @@ export default function Home() {
           <h1 className="w-full text-center text-[72px] font-bold gradient-text">
             {title}
           </h1>
+
+          <div className="flex justify-center align-middle items-center space-x-4 w-full h-8 mb-4">
+            <div className="font-bold text-[#FFE1AD]">
+              {winnerList.length > 0 ? `中奖名单` : ""}
+            </div>
+
+            {winnerList
+              .map((i) => hideSensitiveInfo(i))
+              .map((i) => {
+                return (
+                  <div
+                    key={i}
+                    className="text-[20px] text-center font-bold bg-[rgba(255,255,255,0.1)] text-[#FFE1AD] p-2 rounded-sm"
+                  >
+                    {i}
+                  </div>
+                );
+              })}
+          </div>
+
           <div className="w-full flex justify-center items-center">
             <LuckyDraw
               time={showTime}
@@ -186,25 +206,6 @@ export default function Home() {
               点击抽奖
             </button>
           )}
-
-          <div className="mt-4 w-full text-[20px] text-center font-bold text-white h-3">
-            {winnerList.length > 0 ? `中奖名单` : ""}
-          </div>
-
-          <div className="flex justify-center items-center space-x-4 w-full h-8">
-            {winnerList
-              .map((i) => hideSensitiveInfo(i))
-              .map((i) => {
-                return (
-                  <div
-                    key={i}
-                    className="text-[20px] text-center font-bold bg-[rgba(255,255,255,0.1)] text-[#FFE1AD] p-2 rounded-sm"
-                  >
-                    {i}
-                  </div>
-                );
-              })}
-          </div>
         </main>
 
         <div className="setting">
