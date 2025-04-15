@@ -1,6 +1,7 @@
 "use client";
 
 import { useState, useImperativeHandle, Ref } from "react";
+import { emojiBlasts } from "emoji-blast";
 import styles from "./index.module.css";
 
 function hideSensitiveInfo(str: string) {
@@ -25,6 +26,22 @@ function hideSensitiveInfo(str: string) {
   return str;
 }
 
+function isChromeBrowser() {
+  const userAgent = navigator.userAgent;
+  return /Chrome/.test(userAgent) || /Chromium/.test(userAgent);
+}
+
+const bingo = () => {
+  if (!isChromeBrowser()) return;
+
+  const { cancel } = emojiBlasts({
+    emojiCount: () => Math.random() * 5 + 2,
+    interval: 60,
+  });
+
+  setTimeout(cancel, 1800);
+};
+
 // 定义子组件暴露的 API 类型
 export type LuckyDrawRef = {
   run: (winner: string, cb: () => void) => void;
@@ -36,6 +53,7 @@ interface LuckyDrawProps {
   ref: Ref<LuckyDrawRef>;
   placeholder?: string;
   time?: number;
+  showSpecialEffect?: boolean;
 }
 
 export default function LuckyDraw({
@@ -43,6 +61,7 @@ export default function LuckyDraw({
   lotteryList,
   placeholder = "开始",
   time = 15000,
+  showSpecialEffect = false,
 }: LuckyDrawProps) {
   const [isRun, setIsRun] = useState(false);
   const [change, setChange] = useState<string[]>([placeholder]);
@@ -63,6 +82,9 @@ export default function LuckyDraw({
       setTimeout(() => {
         setIsRun(false);
         cb();
+        if (showSpecialEffect) {
+          bingo();
+        }
       }, time);
     },
     reStart: () => {

@@ -5,6 +5,7 @@ import React, { useRef, useState, useEffect } from "react";
 import LuckyDraw, { LuckyDrawRef } from "./components/LuckyDraw";
 import Settings from "./components/Settings";
 import "./page.css";
+import { set } from "react-hook-form";
 
 function hideSensitiveInfo(str: string) {
   // 处理姓名：匹配中文姓名（2-4个汉字），保留第一个字，其余替换为*
@@ -53,6 +54,7 @@ export default function Home() {
   const [winnerList, setWinnerList] = useState<string[]>([]);
   const [showButton, setShowButton] = useState<boolean>(true);
   const [showTime, setShowTime] = useState<number>(5000);
+  const [showSpecialEffect, setShowSpecialEffect] = useState<boolean>(true);
   const [title, setTitle] = useState<string>("感恩大抽奖");
 
   const reset = () => {
@@ -191,6 +193,7 @@ export default function Home() {
           <div className="w-full flex justify-center items-center">
             <LuckyDraw
               time={showTime}
+              showSpecialEffect={showSpecialEffect}
               lotteryList={remainingElements}
               ref={childRef}
             />
@@ -224,6 +227,7 @@ export default function Home() {
                 setTitle(values.title);
               }
               setShowButton(values.showButton);
+              setShowSpecialEffect(values.showSpecialEffect);
               if (showTime) {
                 setShowTime(values.showTime);
               }
