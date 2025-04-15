@@ -51,10 +51,10 @@ export default function Home() {
   const [currentIndex, setCurrentIndex] = useState<number>(-1);
   const [defaultWinnerList, setDefaultWinnerList] = useState<string[]>([]);
   const [winnerList, setWinnerList] = useState<string[]>([]);
-  const [showButton, setShowButton] = useState<boolean>(true);
+  const [showButton, setShowButton] = useState<boolean>(false);
   const [showTime, setShowTime] = useState<number>(5000);
   const [showSpecialEffect, setShowSpecialEffect] = useState<boolean>(true);
-  const [title, setTitle] = useState<string>("感恩大抽奖");
+  const [title, setTitle] = useState<string>("免票大抽奖");
 
   const reset = () => {
     setSelectedElements([]);
