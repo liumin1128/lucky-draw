@@ -210,7 +210,7 @@ export default function Home() {
           )}
         </main>
 
-        <div className="setting">
+        <div className="setting opacity-0">
           <Settings
             onSubmit={(values) => {
               console.log("onSubmit", values);
