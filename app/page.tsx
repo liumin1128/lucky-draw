@@ -171,7 +171,7 @@ export default function Home() {
           </h1>
 
           <div className="flex justify-center align-middle items-center space-x-4 w-full h-8 mb-4">
-            <div className="font-bold text-[#FFE1AD]">
+            <div className="font-bold text-[32px]  text-[#FFE1AD]">
               {winnerList.length > 0 ? `中奖名单` : ""}
             </div>
 
@@ -181,7 +181,7 @@ export default function Home() {
                 return (
                   <div
                     key={i}
-                    className="text-[20px] text-center font-bold bg-[rgba(255,255,255,0.1)] text-[#FFE1AD] p-2 rounded-sm"
+                    className="text-[32px] text-center font-bold bg-[rgba(255,255,255,0.1)] text-[#FFE1AD] px-3 rounded-sm"
                   >
                     {i}
                   </div>
